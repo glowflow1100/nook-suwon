@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nook Suwon</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#191919;--card:#2b2b2b;--border:#3a3a3a;--text:#e8e8e8;
+    --muted:#888;--accent:#c8a96e;--accent2:#e8c99a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{min-height:100vh;background:var(--bg);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:40px 20px;
+    font-family:'DM Sans','Noto Sans KR',sans-serif;}
+
+  .logo{font-family:'DM Serif Display',serif;font-size:clamp(28px,8vw,46px);
+    color:var(--text);text-align:center;margin-bottom:6px;}
+  .logo span{color:var(--accent);}
+  .addr{font-size:12px;color:var(--muted);letter-spacing:1px;text-align:center;margin-bottom:48px;}
+
+  .cards{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;width:100%;max-width:600px;}
+  .lang-card{background:var(--card);border:1px solid var(--border);border-radius:12px;
+    padding:32px 28px;flex:1;min-width:240px;max-width:280px;text-align:center;
+    text-decoration:none;color:var(--text);transition:all .2s;position:relative;overflow:hidden;}
+  .lang-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);}
+  .lang-card:hover{border-color:var(--accent);transform:translateY(-3px);}
+  .lang-card .flag{font-size:36px;display:block;margin-bottom:10px;}
+  .lang-card h2{font-family:'DM Serif Display',serif;font-size:20px;font-weight:400;margin-bottom:4px;}
+  .lang-card .sub{font-size:12px;color:var(--muted);margin-bottom:20px;}
+  .lang-card .btn{display:inline-block;background:var(--accent);color:#1a1a1a;
+    font-size:12px;font-weight:500;letter-spacing:1px;padding:9px 22px;
+    border-radius:6px;transition:opacity .2s;}
+  .lang-card:hover .btn{opacity:.85;}
+
+  .qr-section{margin-top:52px;width:100%;max-width:600px;
+    border-top:1px solid var(--border);padding-top:40px;text-align:center;}
+  .qr-section h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;
+    color:var(--text);margin-bottom:6px;}
+  .qr-section p{font-size:12px;color:var(--muted);margin-bottom:28px;}
+  .qr-wrap{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
+  .qr-item{background:#fff;border-radius:8px;padding:14px;text-align:center;}
+  .qr-item canvas{display:block;margin:0 auto;}
+  .qr-label{margin-top:8px;font-size:11px;color:#555;letter-spacing:1px;text-transform:uppercase;}
+  .qr-url{font-size:9px;color:#999;margin-top:3px;word-break:break-all;max-width:160px;}
+
+  .guide{margin-top:40px;width:100%;max-width:600px;background:rgba(255,255,255,.03);
+    border:1px solid var(--border);border-radius:10px;padding:24px 28px;
+    color:var(--muted);font-size:13px;line-height:1.9;}
+  .guide h4{color:var(--accent2);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+  .step{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+  .sn{min-width:20px;height:20px;background:var(--accent);color:#1a1a1a;border-radius:50%;
+    font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+  code{background:rgba(255,255,255,.08);color:var(--text);padding:1px 7px;border-radius:3px;font-size:12px;}
+
+  .foot{margin-top:40px;font-size:12px;color:var(--muted);text-align:center;line-height:1.8;}
+  .foot strong{color:var(--accent2);font-weight:500;display:block;margin-bottom:3px;}
+</style>
+</head>
+<body>
+
+<div class="logo">🏡 Nook <span>Suwon</span></div>
+<div class="addr">경기도 수원시 팔달구 화서동 220-20번지, 202호</div>
+
+<div class="cards">
+  <a href="ko.html" class="lang-card">
+    <span class="flag">🇰🇷</span>
+    <h2>한국어 안내</h2>
+    <p class="sub">Korean Guest Guide</p>
+    <span class="btn">안내 보기</span>
+  </a>
+  <a href="en.html" class="lang-card">
+    <span class="flag">🇺🇸</span>
+    <h2>English Guide</h2>
+    <p class="sub">영문 안내문</p>
+    <span class="btn">View Guide</span>
+  </a>
+</div>
+
+<div class="qr-section">
+  <h3>QR Codes</h3>
+  <p>GitHub Pages 배포 후 실제 URL로 자동 생성됩니다</p>
+  <div class="qr-wrap">
+    <div class="qr-item">
+      <div id="qr-ko"></div>
+      <div class="qr-label">🇰🇷 한국어</div>
+      <div class="qr-url" id="url-ko"></div>
+    </div>
+    <div class="qr-item">
+      <div id="qr-en"></div>
+      <div class="qr-label">🇺🇸 English</div>
+      <div class="qr-url" id="url-en"></div>
+    </div>
+  </div>
+</div>
+
+<div class="guide">
+  <h4>🚀 GitHub Pages 배포 방법</h4>
+  <div class="step"><div class="sn">1</div><div>GitHub → New repository → 이름: <code>nook-suwon</code></div></div>
+  <div class="step"><div class="sn">2</div><div><code>index.html</code> <code>ko.html</code> <code>en.html</code> 세 파일 업로드</div></div>
+  <div class="step"><div class="sn">3</div><div>Settings → Pages → Source: <code>main</code> → Save</div></div>
+  <div class="step"><div class="sn">4</div><div>URL: <code>https://[username].github.io/nook-suwon/</code></div></div>
+  <div class="step"><div class="sn">5</div><div>이 페이지에서 QR코드 자동 생성 ✅ — 인쇄해서 방에 붙이세요!</div></div>
+</div>
+
+<div class="foot">
+  <strong>관광통역안내전화 · Tourist Hotline: ☎ 1330</strong>
+  24시간 · 영어·한국어·중국어·일본어
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  const base = window.location.href.replace(/\/[^\/]*$/, '/').replace('index.html','');
+  const koUrl = base + 'ko.html';
+  const enUrl = base + 'en.html';
+  document.getElementById('url-ko').textContent = koUrl;
+  document.getElementById('url-en').textContent = enUrl;
+  new QRCode(document.getElementById('qr-ko'),{text:koUrl,width:140,height:140,colorDark:'#1a1a2e',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+  new QRCode(document.getElementById('qr-en'),{text:enUrl,width:140,height:140,colorDark:'#1a1a2e',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+</script>
+</body>
+</html>

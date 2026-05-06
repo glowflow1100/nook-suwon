@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nook Suwon — Guest Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#f7f5f2; --bg2:#ffffff; --card:#ffffff; --card2:#f0ede8;
+    --border:#e0dbd3; --text:#1a1a1a; --muted:#888;
+    --accent:#a0692a; --accent2:#7a4f1e;
+    --green:#2e7d52; --red:#c0392b; --blue:#2563a8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;
+    font-weight:300;line-height:1.75;font-size:15px;min-height:100vh;}
+
+  .site-header{padding:48px 24px 36px;max-width:640px;margin:0 auto;animation:fadeUp .5s ease both;}
+  .site-header .overtitle{font-size:12px;color:var(--muted);letter-spacing:1.5px;margin-bottom:14px;text-transform:uppercase;}
+  .site-header h1{font-family:'DM Serif Display',serif;font-size:clamp(24px,7vw,36px);font-weight:400;
+    color:var(--text);line-height:1.3;margin-bottom:10px;}
+  .site-header .addr{font-size:13px;color:var(--muted);margin-bottom:18px;}
+  .lang-btn{display:inline-flex;align-items:center;gap:6px;background:var(--card);
+    border:1px solid var(--border);color:var(--muted);padding:7px 14px;border-radius:6px;
+    text-decoration:none;font-size:12px;letter-spacing:.5px;transition:all .2s;}
+  .lang-btn:hover{color:var(--accent);border-color:var(--accent);}
+
+  hr{border:none;border-top:1px solid var(--border);margin:4px 0;}
+  main{max-width:640px;margin:0 auto;padding:0 18px 80px;}
+
+  .sec{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;
+    color:var(--text);margin:32px 0 12px;animation:fadeUp .4s ease both;}
+  .sec .ico{font-size:20px;}
+
+  .info-card{background:var(--card);border-radius:10px;padding:18px 20px;
+    margin-bottom:10px;border:1px solid var(--border);animation:fadeUp .4s ease both;
+    box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+  .info-card .ctitle{font-family:'DM Serif Display',serif;font-weight:400;font-size:17px;
+    color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .info-card p{font-size:14px;color:#555;line-height:1.8;margin-bottom:4px;}
+  .tag{display:inline-block;font-size:12px;padding:2px 10px;border-radius:4px;margin-top:6px;}
+  .tag.green{background:rgba(76,175,125,.15);color:var(--green);border:1px solid rgba(76,175,125,.3);}
+  .tag.red{background:rgba(224,92,92,.12);color:var(--red);border:1px solid rgba(224,92,92,.3);}
+  .tag.blue{background:rgba(91,155,213,.15);color:var(--blue);border:1px solid rgba(91,155,213,.3);}
+
+  .notice-card{background:#fff8f0;border:1px solid #f0d9b5;border-radius:10px;
+    padding:18px 20px;margin-bottom:10px;animation:fadeUp .4s ease both;
+    box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+  .notice-card .ctitle{font-weight:500;font-size:15px;color:#a0692a;margin-bottom:12px;}
+  .notice-card ol{padding-left:20px;}
+  .notice-card li{font-size:14px;color:#444;line-height:1.8;margin-bottom:8px;}
+  .ntag{display:flex;align-items:flex-start;gap:8px;margin-top:8px;font-size:13px;color:#666;line-height:1.7;}
+  .ntag .chk{color:var(--green);flex-shrink:0;margin-top:2px;}
+
+  .acc-item{margin-bottom:6px;animation:fadeUp .4s ease both;}
+  .acc-head{display:flex;align-items:center;gap:12px;padding:13px 16px;background:var(--card);
+    border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;user-select:none;
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+  .acc-head:hover{background:#faf7f3;border-color:var(--accent);}
+  .acc-head.open{border-radius:8px 8px 0 0;border-color:var(--accent);background:#faf7f3;}
+  .acc-ico{font-size:18px;width:28px;text-align:center;}
+  .acc-label{flex:1;font-size:14px;font-weight:400;color:var(--text);}
+  .acc-arrow{color:var(--muted);font-size:12px;transition:transform .2s;}
+  .acc-head.open .acc-arrow{transform:rotate(90deg);}
+  .acc-body{display:none;background:#fdfcfa;border:1px solid var(--accent);
+    border-top:none;border-radius:0 0 8px 8px;padding:16px 18px;
+    font-size:14px;color:#444;line-height:1.85;}
+  .acc-body.open{display:block;animation:slideDown .22s ease;}
+  .acc-body ul{padding-left:18px;}
+  .acc-body li{margin-bottom:5px;}
+  .acc-body p{margin-bottom:6px;}
+  .acc-body strong{color:var(--accent2);}
+
+  .wifi-box{background:#f7f5f2;border:1px solid var(--border);border-radius:6px;padding:12px 14px;margin-top:8px;}
+  .wifi-box span{font-size:11px;color:var(--muted);display:block;margin-bottom:3px;}
+  .wifi-box strong{font-size:17px;font-weight:600;letter-spacing:1px;color:var(--text);}
+
+  .emer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;animation:fadeUp .4s ease both;}
+  .emer-cell{text-align:center;padding:14px 10px;background:var(--card);border:1px solid var(--border);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+  .emer-num{font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;display:block;margin-bottom:3px;}
+  .emer-desc{font-size:11px;color:var(--muted);}
+
+  footer{background:#1a1a1a;border-top:1px solid var(--border);text-align:center;padding:30px 20px;font-size:13px;color:#aaa;}
+  footer strong{color:#c8a96e;display:block;margin-bottom:4px;font-weight:500;}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.10s}.d3{animation-delay:.15s}
+  .d4{animation-delay:.20s}.d5{animation-delay:.25s}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="overtitle">🏡 Guest Guide · Nook Suwon</div>
+  <h1>[ 🏡 Nook Suwon ]<br>Check-In Guide</h1>
+  <p class="addr">202, 220-20 Hwaseo-dong, Paldal-gu, Suwon, Gyeonggi-do</p>
+  <a href="ko.html" class="lang-btn">🇰🇷 한국어 →</a>
+</header>
+
+<main>
+  <hr>
+
+  <!-- BEFORE CHECK-IN -->
+  <div class="sec d1"><span class="ico">🔑</span> Before Check-In</div>
+
+  <div class="info-card d2">
+    <div class="ctitle"><span>🐻</span> Check-In Information</div>
+    <p>Check-in from <strong style="color:var(--accent2)">3:00 PM</strong></p>
+    <p>Check-out by <strong style="color:var(--accent2)">11:00 AM</strong></p>
+    <span class="tag green">✅ Early check-in available on request</span>
+  </div>
+
+  <div class="info-card d3">
+    <div class="ctitle"><span>🔑</span> Address</div>
+    <p>202, 220-20 Hwaseo-dong, Paldal-gu, Suwon, Gyeonggi-do</p>
+    <p style="margin-top:6px;font-size:13px;color:var(--muted)">🚉 ~5 min walk from Hwaseo Station (Line 1)</p>
+  </div>
+
+  <div class="notice-card d4">
+    <div class="ctitle">🚨 Important Notice</div>
+    <ol>
+      <li>Smoking (including e-cigarettes) is <strong style="color:var(--red)">strictly prohibited</strong> inside the house.</li>
+    </ol>
+    <div class="ntag"><span class="chk">✅</span><span>Smoke odour complaints from subsequent guests may result in additional compensation charges.</span></div>
+    <div class="ntag"><span class="chk">✅</span><span>Korean law (National Health Promotion Act §9-8): smoking in non-smoking areas is subject to a fine of up to ₩100,000.</span></div>
+  </div>
+
+  <hr style="margin:22px 0;">
+
+  <!-- AFTER CHECK-IN -->
+  <div class="sec d1"><span class="ico">🔑</span> After Check-In</div>
+
+  <div class="acc-item d2">
+    <div class="acc-head" onclick="acc(this)">
+      <span class="acc-ico">📶</span>
+      <span class="acc-label">Wi-Fi Information</span>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <div class="wifi-box"><span>Network Name</span><strong>Nook_Suwon_5G</strong></div>
+      <div class="wifi-box" style="margin-top:8px"><span>Password</span><strong>nooksuwon202</strong></div>
+    </div>
+  </div>
+
+  <div class="acc-item d2">
+    <div class="acc-head" onclick="acc(this)">
+      <span class="acc-ico">🔐</span>
+      <span class="acc-label">Safety Equipment</span>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <ul>
+        <li>🧯 Fire extinguisher — located in the living room</li>
+        <li>🔔 Smoke/heat detectors — each room ceiling & living room ceiling</li>
+        <li>💨 Carbon monoxide detector — boiler room</li>
+        <li>In an emergency: exit via front door → call 119</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="acc-item d3">
+    <div class="acc-head" onclick="acc(this)">
+      <span class="acc-ico">🎁</span>
+      <span class="acc-label">Complimentary Items</span>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <ul>
+        <li>Towels, shampoo, conditioner, body wash, hair dryer</li>
+        <li>Indoor slippers (at the entrance)</li>
+        <li>Mosquito repellent: fumigant-type & spray-type</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="acc-item d3">
+    <div class="acc-head" onclick="acc(this)">
+      <span class="acc-ico">♻️</span>
+      <span class="acc-label">Recycling Guide</span>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <p>Recycling is <strong>mandatory</strong> in Korea.</p>
+      <ul>
+        <li>Plastic / Cans / Glass — please sort by type and leave separated</li>
+        <li>General waste — use the rubbish bin in the living room</li>
+        <li>Food waste — check the sink area</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="acc-item d4">
+    <div class="acc-head" onclick="acc(this)">
+      <span class="acc-ico">🇰🇷</span>
+      <span class="acc-label">Korean Home Culture</span>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <ul>
+        <li>👟 Remove shoes at the entrance (현관). Slippers are provided.</li>
+        <li>🔥 Ondol underfloor heating — thermostat is located in the <strong>main bedroom</strong></li>
+        <li>🚿 For hot water: press the <strong>hot water button</strong> on the thermostat</li>
+        <li>🌙 Quiet hours after 10:00 PM — please respect neighbours</li>
+        <li>🍳 Kitchen available for light meal preparation</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr style="margin:22px 0;">
+
+  <!-- BEFORE CHECK-OUT -->
+  <div class="sec d1"><span class="ico">🔑</span> Before Check-Out</div>
+
+  <div class="info-card d2">
+    <div class="ctitle"><span>🚪</span> Check-Out</div>
+    <p>Please check out by <strong style="color:var(--accent2)">11:00 AM</strong></p>
+    <p style="margin-top:4px;font-size:13px;color:var(--muted)">Please go through the checklist below before leaving.</p>
+  </div>
+
+  <div class="acc-item d3">
+    <div class="acc-head" onclick="acc(this)">
+      <span class="acc-ico">❄️</span>
+      <span class="acc-label">Turn Off AC & Electronics</span>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <ul>
+        <li>Air conditioner, fan, TV — all OFF</li>
+        <li>All lights OFF</li>
+        <li>Unplug any unnecessary appliances</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="acc-item d3">
+    <div class="acc-head" onclick="acc(this)">
+      <span class="acc-ico">🍽</span>
+      <span class="acc-label">Washing Up & Rubbish</span>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <p>Please wash any used dishes and return them to their place.</p>
+      <p>General waste → living room bin / Food waste → check sink area</p>
+      <span class="tag blue" style="display:inline-block;margin-top:4px;">▶ Recycling is mandatory</span>
+    </div>
+  </div>
+
+  <div class="acc-item d4">
+    <div class="acc-head" onclick="acc(this)">
+      <span class="acc-ico">🚪</span>
+      <span class="acc-label">Close Windows & Door</span>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <ul>
+        <li>Make sure all windows are closed</li>
+        <li>Check that the front door is locked before leaving</li>
+        <li>Please double-check you haven't left any personal belongings behind</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr style="margin:22px 0;">
+
+  <!-- EMERGENCY -->
+  <div class="sec d1"><span class="ico">🚨</span> Emergency Contacts</div>
+
+  <div class="emer-grid d2">
+    <div class="emer-cell">
+      <span class="emer-num" style="color:var(--red)">119</span>
+      <span class="emer-desc">Fire · Ambulance</span>
+    </div>
+    <div class="emer-cell">
+      <span class="emer-num" style="color:var(--blue)">112</span>
+      <span class="emer-desc">Police</span>
+    </div>
+    <div class="emer-cell">
+      <span class="emer-num" style="color:var(--accent)">1330</span>
+      <span class="emer-desc">Tourist Hotline (24h · EN)</span>
+    </div>
+    <div class="emer-cell">
+      <span class="emer-num" style="color:var(--green);font-size:18px;padding-top:4px">Host</span>
+      <span class="emer-desc">Jieun Kim<br>via platform message</span>
+    </div>
+  </div>
+
+  <hr style="margin:22px 0;">
+
+  <!-- TRAVEL -->
+  <div class="sec d1"><span class="ico">🗺</span> Suwon Travel Guide</div>
+
+  <div class="acc-item d2">
+    <div class="acc-head" onclick="acc(this)">
+      <span class="acc-ico">🏯</span>
+      <span class="acc-label">Hwaseong Fortress — UNESCO World Heritage</span>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <p>18th-century 5.7km Joseon fortress wall. UNESCO listed since 1997.</p>
+      <ul style="margin-top:8px">
+        <li>Route: Paldalmun → Haenggung Palace → Janganmun (~2–3 hrs)</li>
+        <li>Hwaseong Yeolcha tourist train — relaxed full-loop option</li>
+        <li>Weekend: traditional performances — archery & guard ceremony</li>
+        <li>Hours: 09:00–18:00 / Admission ₩1,000–3,500</li>
+      </ul>
+      <p style="margin-top:8px;font-size:13px;color:var(--muted)">📍 Bus or ~20 min walk from Hwaseo Station</p>
+    </div>
+  </div>
+
+  <div class="acc-item d3">
+    <div class="acc-head" onclick="acc(this)">
+      <span class="acc-ico">🛍</span>
+      <span class="acc-label">Starfield Suwon — Shopping & Dining</span>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <p>Opened 2024. One of Korea's largest indoor entertainment complexes.</p>
+      <ul style="margin-top:8px">
+        <li>Food Court (B1F): bibimbap, tteokbokki, kimbap</li>
+        <li>Restaurant Zone: Japanese ramen, Korean BBQ, steakhouse</li>
+        <li>Aquafield (indoor water park & spa), CGV Cinema</li>
+        <li>Hours: 10:00–22:00</li>
+      </ul>
+      <p style="margin-top:8px;font-size:13px;color:var(--muted)">📍 ~10–15 min by KakaoTaxi</p>
+    </div>
+  </div>
+
+  <div class="acc-item d4">
+    <div class="acc-head" onclick="acc(this)">
+      <span class="acc-ico">🚇</span>
+      <span class="acc-label">Getting Around Suwon</span>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <ul>
+        <li>🚉 <strong>Hwaseo Station</strong> (Line 1) — ~5 min walk</li>
+        <li>🚉 <strong>Suwon Station</strong> — KTX & intercity buses</li>
+        <li>🚌 Bus — use Kakao Map or Naver Map (English available)</li>
+        <li>🚕 KakaoTaxi app — starts from ₩4,800</li>
+        <li>💳 T-money card — buy at any GS25 / CU / 7-Eleven</li>
+      </ul>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <strong>We hope you have a wonderful stay at Nook Suwon 🌿</strong>
+  Tourist Hotline (24/7 · English): ☎ 1330
+</footer>
+
+<script>
+function acc(head) {
+  const body = head.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-head').forEach(h => h.classList.remove('open'));
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  if (!isOpen) { head.classList.add('open'); body.classList.add('open'); }
+}
+</script>
+</body>
+</html>
